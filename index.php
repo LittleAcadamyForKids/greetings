@@ -39,6 +39,37 @@ if (isloggedin()) {
 } else {
     $myuser = 'Greetings, nouser';
 }
-$templatedata = ['myuser' => $myuser];
+
+// First paragraph .
+$paragraphbefore = 'this is my paragraph';
+$renderparagraph01 = get_string('myparagraph', 'local_greetings', $paragraphbefore);
+
+// Second paragraph .
+$paragraph2stringclean = get_string('myparagraph2', 'local_greetings');
+
+// Time calculation .
+$rendernow = time();
+ $rendernowinyears = $rendernow / 3600 / 24 / 365.25 . ' years';
+
+
+// For float numbers .
+$grade = 20.00 / 3;
+$rendergrade = format_float($grade, 2);
+
+// Correct array with matching variables .
+$templatedata = [
+    'myuser' => $myuser,
+    'renderparagraph01' => $renderparagraph01,
+    'paragraph2stringclean' => $paragraph2stringclean,
+    'rendernow' => $rendernow,
+    'rendernowinyears' => $rendernowinyears,
+    'rendertime' => time(),
+    'rendergrade' => $rendergrade,
+];
+
+
+
 echo $OUTPUT->render_from_template('local_greetings/greeting_message', $templatedata);
 echo $OUTPUT->footer();
+
+

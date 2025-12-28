@@ -24,3 +24,9 @@
     }
 }}
 <h2>{{myuser}}</h2>
+<p>##########<br>{{renderparagraph01}} </p>
+<p>##########<br>{{paragraph2stringclean}} </p>
+<p>Date: {{#userdate}} {{rendernow}}, %Y-%m-%d %H:%M:%S {{/userdate}}</p>
+<p>current time in years from 1/1/1970 is {{rendernowinyears}}</p>
+<p>#######date3#####3<br>{{#userdate}} {{rendertime}}, {{#str}} strftimedate, core_langconfig {{/str}} {{/userdate}}</p>
+##grade is {{rendergrade}}
