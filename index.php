@@ -29,7 +29,7 @@ require_login();
 // Setup page.
 $context = context_system::instance();
 $PAGE->set_context($context);
-$PAGE->set_pagelayout('standard');
+$PAGE->set_pagelayout('base');
 $PAGE->set_title('Testing01 Page');
 $PAGE->set_heading('Testing01 Heading');
 $PAGE->set_url(new moodle_url('/public/local/greetings/index.php'));

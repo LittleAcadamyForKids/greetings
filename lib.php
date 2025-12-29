@@ -1,5 +1,4 @@
 <?php
-defined('MOODLE_INTERNAL') || die();
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -24,14 +23,34 @@ defined('MOODLE_INTERNAL') || die();
  */
 
 
+
+
+defined('MOODLE_INTERNAL') || die();
+
+
+/**
+*  For theme boost .
+* Add front page nav item .
+*/
+function local_greetings_extend_navigation_frontpage(navigation_node $frontpage) {
+    $frontpage->add(
+        get_string('pluginname', 'local_greetings'),
+        new moodle_url('/local/greetings/index.php'),
+        navigation_node::TYPE_CUSTOM,
+    );
+}
+
+
 /**
  * Extends the global navigation for the greetings plugin.
- *
- * @param global_navigation $navigation The global navigation object
- */function local_greetings_extend_navigation(global_navigation $navigation) {
+ *for theme standard
+ * param global_navigation $navigation The global navigation object
+ */
+function local_greetings_extend_navigation(global_navigation $navigation) {
     $node = $navigation->add(
         'GREETINGS', // Hardcoded text for testing
         new moodle_url('/local/greetings/index.php')
     );
     $node->showinflatnavigation = true; // CRITICAL for modern themes
+
 }
