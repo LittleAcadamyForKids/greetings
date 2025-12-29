@@ -25,6 +25,7 @@
 use core_auth\output\login;
 
 require_once('../../../config.php');
+// require_once($CFG->dirroot. '/local/greetings/lib.php');
 require_login();
 // Setup page.
 $context = context_system::instance();
@@ -35,10 +36,14 @@ $PAGE->set_heading('Testing01 Heading');
 $PAGE->set_url(new moodle_url('/public/local/greetings/index.php'));
 echo $OUTPUT->header();
 if (isloggedin()) {
-    $myuser = 'Greetings, ahmed';
+    $myuser = get_string('greetingloggedinuser', 'local_greetings', fullname($USER));
+
 } else {
-    $myuser = 'Greetings, nouser';
+    $myuser = get_string('greetinguser', 'local_greetings');
+
 }
+
+
 
 // First paragraph .
 $paragraphbefore = 'this is my paragraph';

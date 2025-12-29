@@ -27,9 +27,9 @@ defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'greetings';
 $string['myparagraph'] = '{$a}';
-$string['myparagraph2'] = 'no var pargraph02';
-$string['greetingloggedinuser'] = 'hello {$a}';
-$string['greetinguser'] = 'greetings user';
+$string['myparagraph2'] = 'مقال رقم 2 بدون متغيرات';
+$string['greetingloggedinuser'] = 'مرحبا {$a}';
+$string['greetinguser'] = 'مرحبا';
 
 
 
