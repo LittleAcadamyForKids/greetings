@@ -74,6 +74,8 @@ $templatedata = [
 
 
 
+
+
 echo $OUTPUT->render_from_template('local_greetings/greeting_message', $templatedata);
 echo $OUTPUT->footer();
 
