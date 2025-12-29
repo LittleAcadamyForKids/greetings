@@ -25,7 +25,6 @@
 use core_auth\output\login;
 
 require_once('../../../config.php');
-// require_once($CFG->dirroot. '/local/greetings/lib.php');
 require_login();
 // Setup page.
 $context = context_system::instance();

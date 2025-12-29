@@ -21,13 +21,13 @@
  * @copyright  2025 YOUR NAME <your@email.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-// to add a new item into the main navigation bar
-defined('MOODLE_INTERNAL') || die();
 
-// To add a new navigation of my plugin into some themes
-// navationbar .
 
-function local_greetings_extend_navigation(global_navigation $navigation) {
+/**
+ * Extends the global navigation for the greetings plugin.
+ *
+ * @param global_navigation $navigation The global navigation object
+ */function local_greetings_extend_navigation(global_navigation $navigation) {
     $node = $navigation->add(
         'GREETINGS', // Hardcoded text for testing
         new moodle_url('/local/greetings/index.php')
