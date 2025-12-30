@@ -22,8 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use core_auth\output\login;
-
 require_once('../../../config.php');
 require_login();
 global $DB;
@@ -36,96 +34,29 @@ $PAGE->set_title('Testing01 Page');
 $PAGE->set_heading('Testing01 Heading');
 $PAGE->set_url(new moodle_url('/public/local/greetings/index.php'));
 echo $OUTPUT->header();
-if (isloggedin()) {
-    $myuser = get_string('greetingloggedinuser', 'local_greetings', fullname($USER));
-
-} else {
-    $myuser = get_string('greetinguser', 'local_greetings');
-
-}
-
-
-
-// First paragraph .
-$paragraphbefore = 'this is my paragraph';
-$renderparagraph01 = get_string('myparagraph', 'local_greetings', $paragraphbefore);
-
-// Second paragraph .
-$paragraph2stringclean = get_string('myparagraph2', 'local_greetings');
-
-// Time calculation .
-$rendernow = time();
- $rendernowinyears = $rendernow / 3600 / 24 / 365.25 . ' years';
-
-
-// For float numbers .
-$grade = 20.00 / 3;
-$rendergrade = format_float($grade, 2);
-
-// Correct array with matching variables .
-
 
 $messageform = new \local_greetings\form\message_form();
 $messageform->display();
 
 //get all messages .
-
 if ($data = $messageform->get_data()){
-    if(PARAM_TEXT != null)
-    {
-    $message = required_param('usermessage', PARAM_TEXT);
+    if(PARAM_TEXT != null) {
+        $message = required_param('usermessage', PARAM_TEXT);
 
-    // Inserting into messages table
-    $recordmessage = new stdClass;
-    $recordmessage->message = $message;
-    $recordmessage->timecreated = time();
-    // $recordmessage->userid = $USER->id;
-
-    $DB->insert_record('local_greetings', $recordmessage);
-        // In case of updating .
-        // $DB->update_record('local_greetings_messages', $updatedrecord);
-
-        // In case of deleting .
-        // $DB->delete_record('local_greetings_messages', $record);
-
-
-
-    }
-    else
-    {
+        // Inserting into messages table
+        $recordmessage = new stdClass;
+        $recordmessage->message = $message;
+        $recordmessage->timecreated = time();
+        $DB->insert_record('local_greetings', $recordmessage);
+    } else {
         $message = get_string('mydefaultmessage', 'local_greetings');
     }
-    ;
-
     $allmessages = $DB->get_records('local_greetings');
-    
-                                    };
-
-// Get DB user .
-$mainuser = $DB->get_record('user', ['id' => $USER->id]); // Integer, not string
-if ($mainuser) {
-    $mainuserfulname = fullname($mainuser);
-}
-
-
-
-
+};
 
 $templatedata = [
-    'myuser' => $myuser,
-    'renderparagraph01' => $renderparagraph01,
-    'paragraph2stringclean' => $paragraph2stringclean,
-    'rendernow' => $rendernow,
-    'rendernowinyears' => $rendernowinyears,
-    'rendertime' => time(),
-    'rendergrade' => $rendergrade,
     'renderformmessage' => $message,
-    'rendermaindbuser' => $mainuserfulname,
 ];
-
-
 
 echo $OUTPUT->render_from_template('local_greetings/greeting_message', $templatedata);
 echo $OUTPUT->footer();
-
-

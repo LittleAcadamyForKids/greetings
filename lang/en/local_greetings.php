@@ -26,14 +26,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'greetings';
-$string['myparagraph'] = '{$a}';
-$string['myparagraph2'] = 'no var pargraph02';
-$string['greetingloggedinuser'] = 'hello {$a}';
-$string['greetinguser'] = 'greetings user';
 $string['messagelabel'] = 'your message is :';
 $string['enteryourmessage'] = 'enter your message';
 $string['mydefaultmessage'] = 'there is no new messages entered now';
-
-
-
-
