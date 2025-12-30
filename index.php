@@ -54,6 +54,7 @@ if ($data = $messageform->get_data()){
     $allmessages = $DB->get_records('local_greetings');
 };
 
+
 $templatedata = [
     'renderformmessage' => $message,
 ];
