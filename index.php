@@ -26,6 +26,8 @@ use core_auth\output\login;
 
 require_once('../../../config.php');
 require_login();
+global $DB;
+
 // Setup page.
 $context = context_system::instance();
 $PAGE->set_context($context);
@@ -65,7 +67,49 @@ $rendergrade = format_float($grade, 2);
 
 $messageform = new \local_greetings\form\message_form();
 $messageform->display();
+
+//get all messages .
+
+if ($data = $messageform->get_data()){
+    if(PARAM_TEXT != null)
+    {
     $message = required_param('usermessage', PARAM_TEXT);
+
+    // Inserting into messages table
+    $recordmessage = new stdClass;
+    $recordmessage->message = $message;
+    $recordmessage->timecreated = time();
+    // $recordmessage->userid = $USER->id;
+
+    $DB->insert_record('local_greetings', $recordmessage);
+        // In case of updating .
+        // $DB->update_record('local_greetings_messages', $updatedrecord);
+
+        // In case of deleting .
+        // $DB->delete_record('local_greetings_messages', $record);
+
+
+
+    }
+    else
+    {
+        $message = get_string('mydefaultmessage', 'local_greetings');
+    }
+    ;
+
+    $allmessages = $DB->get_records('local_greetings');
+    
+                                    };
+
+// Get DB user .
+$mainuser = $DB->get_record('user', ['id' => $USER->id]); // Integer, not string
+if ($mainuser) {
+    $mainuserfulname = fullname($mainuser);
+}
+
+
+
+
 
 $templatedata = [
     'myuser' => $myuser,
@@ -76,6 +120,7 @@ $templatedata = [
     'rendertime' => time(),
     'rendergrade' => $rendergrade,
     'renderformmessage' => $message,
+    'rendermaindbuser' => $mainuserfulname,
 ];
 
 

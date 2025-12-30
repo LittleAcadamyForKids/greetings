@@ -32,6 +32,8 @@ $string['greetingloggedinuser'] = 'hello {$a}';
 $string['greetinguser'] = 'greetings user';
 $string['messagelabel'] = 'your message is :';
 $string['enteryourmessage'] = 'enter your message';
+$string['mydefaultmessage'] = 'there is no new messages entered now';
+
 
 
 
