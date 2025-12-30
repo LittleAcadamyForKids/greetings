@@ -14,43 +14,32 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+namespace local_greetings\form;
+
+// defined('MOODLE_INTERNAL') || die();
+
 /**
- * Callback implementations for greetings
+ * Class myform
  *
  * @package    local_greetings
  * @copyright  2025 YOUR NAME <your@email.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *
+ *
  */
+// Load the form lib
+require_once($CFG->libdir . '/formslib.php');
+class message_form extends \moodleform {
+    /**
+     * Define the form.
+     */
+    public function definition() {
+        $mform = $this->_form; // Don't forget the underscore!
 
+        $mform->addElement('textarea', 'usermessage', get_string('messagelabel', 'local_greetings')); // Add elements to your form.
+        $mform->setType('usermessage', PARAM_TEXT); // Set type of element.
 
-
-
-// defined('MOODLE_INTERNAL') || die();
-
-
-/**
-*  For theme boost .
-* Add front page nav item .
-*/
-function local_greetings_extend_navigation_frontpage(navigation_node $frontpage) {
-    $frontpage->add(
-        get_string('pluginname', 'local_greetings'),
-        new moodle_url('/local/greetings/index.php'),
-        navigation_node::TYPE_CUSTOM,
-    );
-}
-
-
-/**
- * Extends the global navigation for the greetings plugin.
- *for theme standard
- * param global_navigation $navigation The global navigation object
- */
-function local_greetings_extend_navigation(global_navigation $navigation) {
-    $node = $navigation->add(
-        'GREETINGS', // Hardcoded text for testing
-        new moodle_url('/local/greetings/index.php')
-    );
-    $node->showinflatnavigation = true; // CRITICAL for modern themes
-
+        $submitlabel = get_string('enteryourmessage', 'local_greetings' );
+        $mform->addElement('submit', 'submitmessage', $submitlabel);
+    }
 }

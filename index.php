@@ -61,6 +61,12 @@ $grade = 20.00 / 3;
 $rendergrade = format_float($grade, 2);
 
 // Correct array with matching variables .
+
+
+$messageform = new \local_greetings\form\message_form();
+$messageform->display();
+    $message = required_param('usermessage', PARAM_TEXT);
+
 $templatedata = [
     'myuser' => $myuser,
     'renderparagraph01' => $renderparagraph01,
@@ -69,9 +75,8 @@ $templatedata = [
     'rendernowinyears' => $rendernowinyears,
     'rendertime' => time(),
     'rendergrade' => $rendergrade,
+    'renderformmessage' => $message,
 ];
-
-
 
 
 
