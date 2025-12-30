@@ -54,9 +54,18 @@ if ($data = $messageform->get_data()){
     $allmessages = $DB->get_records('local_greetings');
 };
 
+$messagewithid5 = $DB->get_record('local_greetings', ['id' => 5]);
+if ($messagewithid5) {
+    $rendermessageid5 = $messagewithid5->id;
+    $rendermessagenumber5 = $messagewithid5->message;
+    $rendertimecreatednumber5 = $messagewithid5->timecreated;
+}
 
 $templatedata = [
     'renderformmessage' => $message,
+    'rendermessageid5' => $rendermessageid5,
+    'rendermessagenumber5' => $rendermessagenumber5,
+    'rendertimecreatednumber5' => $rendertimecreatednumber5,
 ];
 
 echo $OUTPUT->render_from_template('local_greetings/greeting_message', $templatedata);

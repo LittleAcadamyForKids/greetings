@@ -24,4 +24,20 @@
     }
 }}
 
-<h3>{{renderformmessage}}</h3>
+{{#rendermessageid5}}
+    <table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 600px;">
+        <tr>
+            <th>ID</th>
+            <th>Message</th>
+            <th>Time Created</th>
+        </tr>
+        <tr>
+            <td>{{rendermessageid5}}</td>
+            <td>{{rendermessagenumber5}}</td>
+            <td>{{rendertimecreatednumber5}}</td>
+        </tr>
+    </table>
+{{/rendermessageid5}}
+{{^rendermessageid5}}
+    <p>Message with ID 5 not found.</p>
+{{/rendermessageid5}}
